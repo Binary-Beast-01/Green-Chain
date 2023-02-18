@@ -6,7 +6,7 @@ App = {
 
     },
   
-    connectWallet: async () => {
+    connectWalletRegister: async () => {
       if (typeof web3 !== 'undefined') {
         App.web3Provider = web3.currentProvider
         web3 = new Web3(web3.currentProvider)
@@ -40,7 +40,6 @@ App = {
       // Get the Account of the Wallet
       const accounts = await web3.eth.getAccounts();
       App.account = accounts[0];
-      console.log(App)
       // Create a JavaScript version of the smart contract
 
       const user = await $.getJSON('/build/contracts/User.json')
@@ -49,6 +48,21 @@ App = {
   
       // Hydrate the smart contract with values from the blockchain
       App.user = await App.contracts.user.deployed()
+
+      document.cookie = "walletID="+accounts[0];
+      document.cookie = "name="+document.getElementById('register_name').value;
+      document.cookie = "role="+document.getElementById('register_name').value;
+
+      data['name'] = document.getElementById('register_name').value;
+      data['role'] = document.getElementById('register_role').value;
+      data['mail'] = document.getElementById('register_mail').value;
+      data['wallet_id'] = accounts[0]
+
+      let r = await fetch('/register', {method: 'POST', body: JSON.stringify(data), headers: {'Content-type': 'application/json; charset=UTF-8'}})
+      r = await r.json();
+      if (r){
+          window.location.href = '/dashboard'
+      }
     },
 
     setLoading: (boolean) => {
