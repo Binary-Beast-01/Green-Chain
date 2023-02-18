@@ -54,8 +54,8 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" id="co2-update" href="#team">Update Co2 Emission</a></li>
-          <li><a class="nav-link scrollto" href="/report-co2">Industry Report</a></li>
-          <li><a class="nav-link scrollto" href="/dashboard">Dashboard</a></li>
+          <li><a class="nav-link scrollto" href="#team">Industry Report</a></li>
+          <li><a class="nav-link scrollto" href="#team">Dashboard</a></li>
           <li><a class="getstarted scrollto" href="/auth/logout">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -67,29 +67,23 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center" style="justify-content: center;">
 
-    <div data-aos="fade-up" data-aos-delay="200" class="container" style="top: 50px;max-width: 540px;">
+    <div data-aos="fade-up" data-aos-delay="200" class="container" style="top: 0px;max-width: 90%;">
         <div class="form">
-            <span class="title">Carbon Foot Print</span>
+            <span class="title" id="tabel-title"></span>
 
-            <form onSubmit="App.EmissionCommunicate(); return false;">
-                <div class="input-field">
-                    <input id="walletID" type="text" name="walletID" placeholder="Enter your Wallet" required readonly>
-                    <i class="bi bi-envelope icon"></i>
-                </div>
-                <div class="input-field">
-                    <input id="name" type="text" placeholder="Enter Name" required readonly>
-                    <i class="bi bi-check"></i>
-                </div>
-                <div class="input-field">
-                    <input id="co2" type="text" placeholder="Enter Co2 Emission (in ton)" required>
-                    <i class="bi bi-arrow-right"></i>
-                </div>
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Industry</th>
+                    <th scope="col">Carbon Emission</th>
+                    <th scope="col">Cummulative Co2 Emission</th>
+                  </tr>
+                </thead>
+                <tbody id="tabel-body">
                 
-                <div class="input-field button">
-                    <input type="submit" value="Sumbit Co2 Emission">
-                </div>
-                
-            </form>
+                </tbody>
+              </table>
         </div>
     </div>
 
@@ -112,8 +106,8 @@
   <script src="/js/ethConnect.js"></script>
     <script>
         cookies = document.cookie.split(';')
-        document.getElementById('walletID').value = cookies[0].split('=')[1]
-        document.getElementById('name').value = cookies[2].split('=')[1]
+        App.FetchEmission();
+        document.getElementById('tabel-title').innerHTML = cookies[2].split('=')[1] + " Report"
     </script>
 </body>
 
