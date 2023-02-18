@@ -13,7 +13,7 @@ app.use(express.urlencoded({
 app.use(cookieParser())
 
 const PORT = process.env.PORT || 8888
-app.listen(PORT, () => { console.log('Server Check.................OK !!') });
+app.listen(PORT, () => { console.log('Server Check.................OK !!\nhttp://localhost:8888') });
 
 app.get('/',(req,res)=>{
   res.render("index")
