@@ -49,10 +49,6 @@ App = {
       // Hydrate the smart contract with values from the blockchain
       App.user = await App.contracts.user.deployed()
 
-      document.cookie = "walletID="+accounts[0];
-      document.cookie = "name="+document.getElementById('register_name').value;
-      document.cookie = "role="+document.getElementById('register_role').value;
-
       data = {}
 
       data['name'] = document.getElementById('register_name').value;

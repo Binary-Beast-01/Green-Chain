@@ -51,12 +51,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="getstarted scrollto" href="#profile">Industry Report</a></li>
+          <li><a class="nav-link scrollto" id="co2-update" href="#team">Update Co2 Emission</a></li>
+          <li><a class="nav-link scrollto" href="#team">Industry Report</a></li>
+          <li><a class="nav-link scrollto" href="#team">Dashboard</a></li>
+          <li><a class="getstarted scrollto" href="/auth/logout">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -70,29 +68,30 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">Blockchain based CO2 level deduct system</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">We detect and provide the CO2 level of the industries and notify the industries when CO2 level are increase. </h2>
-          <div data-aos="fade-up" data-aos-delay="600">
-            <div class="text-center text-lg-start">
-              <a href="#about"
-                class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Get Started</span>
-                <i class="bi bi-arrow-right"></i>
-              </a>
+          <h1 data-aos="fade-up"><u>Wallet ID</u></h1>
+          <h1 data-aos="fade-up" id="walletID"></h1>
+          <div style="display: flex;justify-content: space-between;margin-bottom: 64px;margin-top: 24px;">
+            <div>
+                <h1 data-aos="fade-up" data-aos-delay="400"><u>Role</u></h1>
+                <h1 data-aos="fade-up" data-aos-delay="400" id="role"></h1>
+            </div>
+            <div>
+                <h1 data-aos="fade-up" data-aos-delay="600"><u>Name</u></h1>
+                <h1 data-aos="fade-up" data-aos-delay="500" id="name"></h1>
             </div>
           </div>
+          
         </div>
-        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-          <img src="img/hero.svg" class="img-fluid" alt="">
-        </div>
+        <nav id="navbar" class="navbar" style="display: flex;justify-content: center;">
+            <a class="getstarted scrollto" data-aos="fade-right" id="co2-update-btn" data-aos-delay="800" href="/auth/logout">Mark Co2 Emission</a>
+            <a class="getstarted scrollto" data-aos="fade-left" data-aos-delay="800" href="/auth/logout">Co2 Report</a>
+        </nav>
+        
+
       </div>
     </div>
 
   </section><!-- End Hero -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="vendor/aos/aos.js"></script>
@@ -109,7 +108,16 @@
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
   <script src="js/connect.js"></script>
-
+    <script>
+        cookies = document.cookie.split(';')
+        document.getElementById('walletID').innerHTML = cookies[0].split('=')[1]
+        document.getElementById('role').innerHTML = cookies[1].split('=')[1]
+        document.getElementById('name').innerHTML = cookies[2].split('=')[1]
+        if(document.getElementById('role').innerHTML == 'Goverment'){
+            document.getElementById('co2-update').style.display = 'none'
+            document.getElementById('co2-update-btn').style.display = 'none'
+        }
+    </script>
 </body>
 
 </html>
