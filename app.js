@@ -25,5 +25,5 @@ app.use('/auth', AuthenticationRoute)
 app.use('/',DashboardRoute)
 
 app.get('/',(req,res)=>{
-  res.render("index")
+  res.render("transparent")
 })
