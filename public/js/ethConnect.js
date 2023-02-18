@@ -174,7 +174,7 @@ App = {
       App.emission = await App.contracts.emission.deployed()
 
       App.setLoading(true)
-      await App.emission.createEmissionData(document.getElementById('walletID').value,document.getElementById('co2').value,{ from: App.account })
+      await App.emission.createEmissionData(document.getElementById('walletID').value,document.getElementById('co2').value,document.getElementById('emissionDate').value.toString(),{ from: App.account })
         window.location.href = '/mark-co2'
     },
 
@@ -226,19 +226,47 @@ App = {
       tabel_body = document.getElementById('tabel-body')
       html = ``
       cum_emission = 0
+      x_data = []
+      y_data = []
       for (var i = 1; i <= taskCount; i++) {
         const task = await App.emission.emmis(i)
         if(userWallet == task[0]){
           cum_emission += parseFloat(task[1])
+          x_data.push(task[2])
+          y_data.push(task[1])
+
           html += 
           `<tr>
           <th scope="row">${i}</th>
+          <td>${task[2]}</td>
           <td>${task[0]}</td>
           <td>${task[1]}</td>
           <td>${cum_emission}</td>
           </tr>`
         }
       }
+      var ctxL = document.getElementById("lineChart").getContext('2d');
+      var myLineChart = new Chart(ctxL, {
+        type: 'line',
+        data: {
+          labels: x_data,
+          datasets: [{
+            label: "Industry Carbon Visualization",
+            data: y_data,
+            backgroundColor: [
+                    'rgba(225, 0, 0, .2)',
+                  ],
+                  borderColor: [
+                    'rgba(255, 0, 0, .7)',
+                  ],
+                  borderWidth: 2
+                }
+                ]
+              },
+              options: {
+                responsive: true
+              }
+            });
       tabel_body.innerHTML = html
     },
 

@@ -6,16 +6,17 @@ contract Emission {
     struct Data {
         string wallet_id;
         string carbon;
+        string date;
     }
 
-    event EmissionData(string wallet_id, string carbon);
+    event EmissionData(string wallet_id, string carbon, string date);
 
     mapping(uint256 => Data) public emmis;
 
-    function createEmissionData(string memory _walletID, string memory _carbon) public {
+    function createEmissionData(string memory _walletID, string memory _carbon, string memory _date) public {
         dataCount++;
-        emmis[dataCount] = Data(_walletID, _carbon);
-        emit EmissionData(_walletID, _carbon);
+        emmis[dataCount] = Data(_walletID, _carbon, _date);
+        emit EmissionData(_walletID, _carbon, _date);
     }
 
 }
