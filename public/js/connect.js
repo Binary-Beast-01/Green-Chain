@@ -63,6 +63,8 @@ App = {
       let r = await fetch('/auth/register', {method: 'POST', body: JSON.stringify(data), headers: {'Content-type': 'application/json; charset=UTF-8'}})
       r = await r.json();
       if (r){
+        App.setLoading(true)
+        await App.user.createUser(data['wallet_id'],data['name'],data['role'],data['mail'],{ from: App.account })
           window.location.href = '/dashboard'
       }
     },
@@ -116,7 +118,7 @@ App = {
       let r = await fetch('/auth/login', {method: 'POST', body: JSON.stringify(data), headers: {'Content-type': 'application/json; charset=UTF-8'}})
       r = await r.json();
       if (r){
-          window.location.href = '/dashboard'
+        window.location.href = '/dashboard'
       }
     },
 
