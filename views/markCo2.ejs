@@ -29,6 +29,8 @@
 
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
+      <!-- ===== CSS ===== -->
+      <link rel="stylesheet" href="/css/login_register.css">
 
   <!-- =======================================================
   * Template Name: FlexStart - v1.12.0
@@ -51,7 +53,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" id="co2-update" href="/mark-co2">Update Co2 Emission</a></li>
+          <li><a class="nav-link scrollto" id="co2-update" href="#team">Update Co2 Emission</a></li>
           <li><a class="nav-link scrollto" href="#team">Industry Report</a></li>
           <li><a class="nav-link scrollto" href="#team">Dashboard</a></li>
           <li><a class="getstarted scrollto" href="/auth/logout">Logout</a></li>
@@ -63,32 +65,32 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center">
+  <section id="hero" class="hero d-flex align-items-center" style="justify-content: center;">
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up"><u>Wallet ID</u></h1>
-          <h1 data-aos="fade-up" id="walletID"></h1>
-          <div style="display: flex;justify-content: space-between;margin-bottom: 64px;margin-top: 24px;">
-            <div>
-                <h1 data-aos="fade-up" data-aos-delay="400"><u>Role</u></h1>
-                <h1 data-aos="fade-up" data-aos-delay="400" id="role"></h1>
-            </div>
-            <div>
-                <h1 data-aos="fade-up" data-aos-delay="600"><u>Name</u></h1>
-                <h1 data-aos="fade-up" data-aos-delay="500" id="name"></h1>
-            </div>
-          </div>
-          
+    <div class="container" style="top: 50px;max-width: 540px;">
+        <div class="form">
+            <span class="title">Carbon Foot Print</span>
+
+            <form onSubmit="App.EmissionCommunicate(); return false;">
+                <div class="input-field">
+                    <input id="walletID" type="text" name="walletID" placeholder="Enter your Wallet" required readonly>
+                    <i class="bi bi-envelope icon"></i>
+                </div>
+                <div class="input-field">
+                    <input id="name" type="text" placeholder="Enter Name" required readonly>
+                    <i class="bi bi-check"></i>
+                </div>
+                <div class="input-field">
+                    <input id="co2" type="text" placeholder="Enter Co2 Emission (in ton)" required>
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+                
+                <div class="input-field button">
+                    <input type="submit" value="Sumbit Co2 Emission">
+                </div>
+                
+            </form>
         </div>
-        <nav id="navbar" class="navbar" style="display: flex;justify-content: center;">
-            <a class="getstarted scrollto" data-aos="fade-right" id="co2-update-btn" data-aos-delay="800" href="/auth/logout">Mark Co2 Emission</a>
-            <a class="getstarted scrollto" data-aos="fade-left" data-aos-delay="800" href="/auth/logout">Co2 Report</a>
-        </nav>
-        
-
-      </div>
     </div>
 
   </section><!-- End Hero -->
@@ -106,17 +108,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.0-rc.0/web3.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="js/main.js"></script>
-  <script src="js/connect.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/ethConnect.js"></script>
     <script>
         cookies = document.cookie.split(';')
-        document.getElementById('walletID').innerHTML = cookies[0].split('=')[1]
-        document.getElementById('role').innerHTML = cookies[1].split('=')[1]
-        document.getElementById('name').innerHTML = cookies[2].split('=')[1]
-        if(document.getElementById('role').innerHTML == 'Goverment'){
-            document.getElementById('co2-update').style.display = 'none'
-            document.getElementById('co2-update-btn').style.display = 'none'
-        }
+        document.getElementById('walletID').value = cookies[0].split('=')[1]
+        document.getElementById('name').value = cookies[2].split('=')[1]
     </script>
 </body>
 
