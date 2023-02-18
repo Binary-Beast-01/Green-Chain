@@ -13,8 +13,8 @@ app.use(express.urlencoded({
 app.use(cookieParser())
 
 const PORT = process.env.PORT || 8888
-app.listen(PORT, () => { console.log('API Server.................ok') });
+app.listen(PORT, () => { console.log('Server Check.................OK !!') });
 
 app.get('/',(req,res)=>{
-  res.send("Under Development.......")
+  res.render("index")
 })
