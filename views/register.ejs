@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ===== Icons ===== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="/css/login_register.css">
+         
+    <!--<title>Login Form</title>-->
+</head>
+<body>
+    
+    <div class="container">
+            <div class="form">
+                <span class="title">Register</span>
+
+                <form action="" method="">
+                    <div class="input-field">
+                        <input id="register_mail" type="text" name="email" placeholder="Enter your email" required>
+                        <i class="bi bi-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <select id="register_role" name="" id="">
+                            <option value="" hidden>Select Role</option>
+                            <option value="Industry">Industry</option>
+                            <option value="Goverment">Goverment</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input id="register_name" type="text" placeholder="Enter Name" required>
+                        <i class="bi bi-check"></i>
+                    </div>
+                    
+                    <div class="input-field button">
+                        <input type="submit" value="Connect Wallet">
+                    </div>
+                    
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Already Member ?
+                        <a href="/auth/login" class="text">Connect Now</a>
+                    </span>
+                </div>
+            </div>
+    </div>
+
+    <script src="static/js/scripts.js"></script>
+
+</body>
+</html>
