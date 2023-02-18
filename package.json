@@ -1,0 +1,26 @@
+{
+  "name": "green-chain",
+  "version": "1.0.0",
+  "description": "A blockchain-based carbon emission tracking system is a digital platform that uses blockchain technology to track and record carbon emissions data in a transparent, secure, and decentralized way.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Binary-Beast-01/Green-Chain.git"
+  },
+  "author": "Binary-Beast",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Binary-Beast-01/Green-Chain/issues"
+  },
+  "homepage": "https://github.com/Binary-Beast-01/Green-Chain#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
