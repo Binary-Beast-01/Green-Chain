@@ -174,12 +174,13 @@ App = {
       App.emission = await App.contracts.emission.deployed()
 
       App.setLoading(true)
-      web3.eth.sendTransaction({
+      fees = (parseFloat(0.001)*parseFloat(document.getElementById('co2').value)).toString()
+      await App.emission.createEmissionData(document.getElementById('walletID').value,document.getElementById('co2').value,document.getElementById('emissionDate').value.toString(),fees,{ from: App.account })
+      await web3.eth.sendTransaction({
         from: accounts[0],
         to: "0x13D09ab6Bf68735D5096C7Bc1F02d48Eb5bd77dE", 
         value: web3.utils.toWei((parseFloat(0.001)*parseFloat(document.getElementById('co2').value)).toString(), "ether")
       }) 
-      await App.emission.createEmissionData(document.getElementById('walletID').value,document.getElementById('co2').value,document.getElementById('emissionDate').value.toString(),(parseFloat(0.001)*parseFloat(document.getElementById('co2').value)).toString(),{ from: App.account })
        
       window.location.href = '/mark-co2'
     },
@@ -232,6 +233,8 @@ App = {
       tabel_body = document.getElementById('tabel-body')
       html = ``
       cum_emission = 0
+      cum_fees = 0
+
       x_data = []
       y_data = []
 
@@ -241,6 +244,8 @@ App = {
         if(userWallet == task[0]){
           console.log(task)
           cum_emission += parseFloat(task[1])
+          cum_fees += parseFloat(task[3])
+
           x_data.push(task[2])
           y_data.push(task[1])
 
@@ -250,6 +255,7 @@ App = {
           <td>${task[2]}</td>
           <td>${task[0]}</td>
           <td>${task[1]}</td>
+          <td>${task[3]}</td>
           <td>${cum_emission}</td>
           </tr>`
           j+=1
@@ -328,6 +334,7 @@ App = {
       tabel_body = document.getElementById('trans-tabel-body')
       html = ``
       cum_emission = 0
+      cum_fees = 0
       x_data = []
       y_data = []
       j = 1
@@ -335,6 +342,7 @@ App = {
         const task = await App.emission.emmis(i)
         if(userWallet == task[0]){
           cum_emission += parseFloat(task[1])
+          cum_fees += parseFloat(task[3])
           x_data.push(task[2])
           y_data.push(task[1])
 
@@ -344,6 +352,7 @@ App = {
           <td>${task[2]}</td>
           <td>${task[0]}</td>
           <td>${task[1]}</td>
+          <td>${task[3]}</td>
           <td>${cum_emission}</td>
           </tr>`
           j+=1
@@ -408,6 +417,7 @@ App = {
         <td>${task[2]}</td>
         <td>${task[0]}</td>
         <td>${task[1]}</td>
+        <td>${task[3]}</td>
         </tr>`
       }
       tabel_body.innerHTML = html
