@@ -29,16 +29,8 @@
 
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
-      <!-- ===== CSS ===== -->
-      <link rel="stylesheet" href="/css/login_register.css">
-
-  <!-- =======================================================
-  * Template Name: FlexStart - v1.12.0
-  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="/css/login_register.css">
 
 <body>
 
@@ -68,35 +60,35 @@
   <section id="hero" class="hero d-flex align-items-center" style="justify-content: center;">
 
     <div data-aos="fade-up" data-aos-delay="200" class="container" style="top: 50px;max-width: 540px;">
-        <div class="form">
-            <span class="title">Carbon Foot Print</span>
+      <div class="form">
+        <span class="title">Carbon Foot Print</span>
 
-            <form onSubmit="App.EmissionCommunicate(); return false;">
-                <div class="input-field">
-                    <input id="walletID" type="text" name="walletID" placeholder="Enter your Wallet" required readonly>
-                    <i class="bi bi-envelope icon"></i>
-                </div>
-                <div class="input-field">
-                    <input id="name" type="text" placeholder="Enter Name" required readonly>
-                    <i class="bi bi-check"></i>
-                </div>
-                <div>
-                    <div class="input-field">
-                        <input id="emissionDate" type="date" required>
-                        <i class="bi bi-list"></i>
-                    </div>
-                    <div class="input-field">
-                        <input id="co2" type="text" placeholder="Enter Co2 Emission (in ton)" required>
-                        <i class="bi bi-arrow-right"></i>
-                    </div>
-                </div>
-                
-                <div class="input-field button">
-                    <input type="submit" value="Sumbit Co2 Emission">
-                </div>
-                
-            </form>
-        </div>
+        <form onSubmit="App.EmissionCommunicate(); return false;">
+          <div class="input-field">
+            <input id="walletID" type="text" name="walletID" placeholder="Enter your Wallet" required readonly>
+            <i class="bi bi-envelope icon"></i>
+          </div>
+          <div class="input-field">
+            <input id="name" type="text" placeholder="Enter Name" required readonly>
+            <i class="bi bi-check"></i>
+          </div>
+          <div>
+            <div class="input-field">
+              <input id="emissionDate" type="date" required>
+              <i class="bi bi-list"></i>
+            </div>
+            <div class="input-field">
+              <input id="co2" type="text" placeholder="Enter Co2 Emission (in ton)" required>
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+
+          <div class="input-field button">
+            <input type="submit" value="Sumbit Co2 Emission">
+          </div>
+
+        </form>
+      </div>
     </div>
 
   </section><!-- End Hero -->
@@ -108,19 +100,19 @@
   <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/truffle-contract@4.0.31/dist/truffle-contract.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.0-rc.0/web3.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/truffle-contract@4.0.31/dist/truffle-contract.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.0-rc.0/web3.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="/js/main.js"></script>
   <script src="/js/ethConnect.js"></script>
-    <script>
-        cookies = document.cookie.split(';')
-        document.getElementById('walletID').value = cookies[0].split('=')[1]
-        document.getElementById('name').value = cookies[2].split('=')[1]
-    </script>
+  <script>
+    cookies = document.cookie.split(';')
+    document.getElementById('walletID').value = cookies[0].split('=')[1]
+    document.getElementById('name').value = cookies[2].split('=')[1]
+  </script>
 </body>
 
 </html>
