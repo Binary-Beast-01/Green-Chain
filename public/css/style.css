@@ -17,6 +17,23 @@ a:hover {
   color: #717ff5;
   text-decoration: none;
 }
+/* width */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+/* Track */
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(60deg, #4154f1, #2b3eec);
+  border-radius: 10px;
+}
 
 h1,
 h2,
