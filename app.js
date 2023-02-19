@@ -27,3 +27,6 @@ app.use('/',DashboardRoute)
 app.get('/',(req,res)=>{
   res.render("index")
 })
+app.get('/transparency',(req,res)=>{
+  res.render("transparent")
+})

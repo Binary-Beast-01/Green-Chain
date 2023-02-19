@@ -228,21 +228,25 @@ App = {
       cum_emission = 0
       x_data = []
       y_data = []
+
+      j = 1
       for (var i = 1; i <= taskCount; i++) {
         const task = await App.emission.emmis(i)
         if(userWallet == task[0]){
+          console.log(task)
           cum_emission += parseFloat(task[1])
           x_data.push(task[2])
           y_data.push(task[1])
 
           html += 
           `<tr>
-          <th scope="row">${i}</th>
+          <th scope="row">${j}</th>
           <td>${task[2]}</td>
           <td>${task[0]}</td>
           <td>${task[1]}</td>
           <td>${cum_emission}</td>
           </tr>`
+          j+=1
         }
       }
       var ctxL = document.getElementById("lineChart").getContext('2d');
@@ -267,6 +271,78 @@ App = {
                 responsive: true
               }
             });
+      tabel_body.innerHTML = html
+    },
+
+    SpecificFetchEmission:async () => {
+      if (typeof web3 !== 'undefined') {
+        App.web3Provider = web3.currentProvider
+        web3 = new Web3(web3.currentProvider)
+      } else {
+        window.alert("Please connect to Metamask.")
+      }
+      // Modern dapp browsers...
+      if (window.ethereum) {
+        window.web3 = new Web3(ethereum)
+        try {
+          // Request account access if needed
+          await ethereum.enable()
+          // Acccounts now exposed
+          web3.eth.sendTransaction({/* ... */})
+        } catch (error) {
+          // User denied account access...
+        }
+      }
+      // Legacy dapp browsers...
+      else if (window.web3) {
+        App.web3Provider = web3.currentProvider
+        window.web3 = new Web3(web3.currentProvider)
+        // Acccounts always exposed
+        web3.eth.sendTransaction({/* ... */})
+      }
+      // Non-dapp browsers...
+      else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!')
+      }
+
+      // Get the Account of the Wallet
+      const accounts = await web3.eth.getAccounts();
+      App.account = accounts[0];
+
+      // Co2 Emission Smart Contract
+      const emission = await $.getJSON('/build/contracts/Emission.json')
+      App.contracts.emission = TruffleContract(emission)
+      App.contracts.emission.setProvider(App.web3Provider)
+      // Hydrate the smart contract with values from the blockchain
+      App.emission = await App.contracts.emission.deployed()
+
+      const taskCount = await App.emission.dataCount()
+      const userWallet = document.getElementById('walletSearch').value
+      
+      tabel_body = document.getElementById('trans-tabel-body')
+      html = ``
+      cum_emission = 0
+      x_data = []
+      y_data = []
+      j = 1
+      for (var i = 1; i <= taskCount; i++) {
+        const task = await App.emission.emmis(i)
+        if(userWallet == task[0]){
+          cum_emission += parseFloat(task[1])
+          x_data.push(task[2])
+          y_data.push(task[1])
+
+          html += 
+          `<tr>
+          <th scope="row">${j}</th>
+          <td>${task[2]}</td>
+          <td>${task[0]}</td>
+          <td>${task[1]}</td>
+          <td>${cum_emission}</td>
+          </tr>`
+          j+=1
+        }
+      }
       tabel_body.innerHTML = html
     },
 

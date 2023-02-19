@@ -74,7 +74,7 @@
             </h1>
 
             <div class="input-field">
-              <input type="text" style="position: absolute;
+              <input id="walletSearch" type="text" style="position: absolute;
                 height: 100%;
                 width: 100%;
                 padding: 0 35px;
@@ -85,7 +85,7 @@
                 border-top: 2px solid transparent;
                 transition: all 0.2s ease;" placeholder="Enter Industry Wallet Address">
             </div>
-            <button class="btn"
+            <button onclick="App.SpecificFetchEmission()" class="btn"
               style="background-color: #012970;color: white; position: absolute;top: 140px;right: 0;">Sumbit</button>
           </div>
         </div>
@@ -94,41 +94,26 @@
         </div>
       </div>
     </div>
-
+    
   </section><!-- End Hero -->
+  <div class="container" style="margin-top: 64px;">
+    <h1 class="title" id="tabel-title">Report</h1>
 
-  <main id="main">
-    <!-- ======= About Section ======= -->
-    <section id="industryData" class="industryData">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Industry</th>
+                  <th scope="col">Carbon Emission</th>
+                  <th scope="col">Cummulative Co2 Emission</th>
+                </tr>
+              </thead>
+              <tbody id="trans-tabel-body">
 
-      <div class="container" data-aos="fade-up">
-        <div class="row gx-0">
-
-          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-            <div class="content">
-              <h3>Problem</h3>
-              <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptas aut nihil, tempora earum
-                aperiam officiis totam, magni deserunt ea numquam itaque facilis eum nemo quis! Facere ullam ratione
-                iure.</h2>
-              <p>
-                Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et. Inventore et et dolor consequatur
-                itaque ut voluptate sed et. Magnam nam ipsum tenetur suscipit voluptatum nam et est corrupti.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="img/problem.jpg" class="img-fluid" alt="">
-          </div>
-
-        </div>
-      </div>
-
-    </section><!-- End About Section -->
-
-    </div> <!-- / row -->
-  </main>
-
+              </tbody>
+            </table>
+  </div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
@@ -147,7 +132,7 @@
 
   <!-- Template Main JS File -->
   <script src="/js/main.js"></script>
-  <script src="/js/connect.js"></script>
+  <script src="/js/ethConnect.js"></script>
 
 </body>
 

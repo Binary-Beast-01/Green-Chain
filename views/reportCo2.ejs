@@ -104,7 +104,12 @@
   <script>
     cookies = document.cookie.split(';')
     App.FetchEmission();
-    document.getElementById('tabel-title').innerHTML = cookies[2].split('=')[1] + " Report"
+    cookies = document.cookie.split(';')
+    for (let i = 0; i < cookies.length; i++) {
+      if(cookies[i].split('=')[0].trim() == 'name'){
+        document.getElementById('tabel-title').innerHTML = cookies[i].split('=')[1] + " Report"
+      } 
+    }
   </script>
 </body>
 

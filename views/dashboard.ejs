@@ -105,9 +105,9 @@
   <script src="js/connect.js"></script>
   <script>
     cookies = document.cookie.split(';')
-    document.getElementById('walletID').innerHTML = cookies[0].split('=')[1]
-    document.getElementById('role').innerHTML = cookies[1].split('=')[1]
-    document.getElementById('name').innerHTML = cookies[2].split('=')[1]
+    document.getElementById(cookies[0].split('=')[0].trim()).innerHTML = cookies[0].split('=')[1]
+    document.getElementById(cookies[1].split('=')[0].trim()).innerHTML = cookies[1].split('=')[1]
+    document.getElementById(cookies[2].split('=')[0].trim()).innerHTML = cookies[2].split('=')[1]
     if (document.getElementById('role').innerHTML == 'Goverment') {
       document.getElementById('co2-update').style.display = 'none'
       document.getElementById('co2-update-btn').style.display = 'none'
