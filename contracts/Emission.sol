@@ -7,16 +7,17 @@ contract Emission {
         string wallet_id;
         string carbon;
         string date;
+        string fees;
     }
 
-    event EmissionData(string wallet_id, string carbon, string date);
+    event EmissionData(string wallet_id, string carbon, string date, string fees);
 
     mapping(uint256 => Data) public emmis;
 
-    function createEmissionData(string memory _walletID, string memory _carbon, string memory _date) public {
+    function createEmissionData(string memory _walletID, string memory _carbon, string memory _date, string memory _fees) public {
         dataCount++;
-        emmis[dataCount] = Data(_walletID, _carbon, _date);
-        emit EmissionData(_walletID, _carbon, _date);
+        emmis[dataCount] = Data(_walletID, _carbon, _date, _fees);
+        emit EmissionData(_walletID, _carbon, _date, _fees);
     }
 
 }

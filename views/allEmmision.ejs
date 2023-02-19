@@ -29,8 +29,8 @@
 
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
-
-</head>
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="/css/login_register.css">
 
 <body>
 
@@ -46,7 +46,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" id="co2-update" href="/mark-co2">Update Co2 Emission</a></li>
-          <li><a class="nav-link scrollto" id="reportLink" href="/report-co2">Industry Report</a></li>
+          <li><a class="nav-link scrollto" href="/report-co2">Industry Report</a></li>
           <li><a class="nav-link scrollto" href="/dashboard">Dashboard</a></li>
           <li><a class="getstarted scrollto" href="/auth/logout">Logout</a></li>
         </ul>
@@ -57,39 +57,34 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center">
+  <section id="hero" class="hero d-flex align-items-center" style="justify-content: center;">
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up"><u>Wallet ID</u></h1>
-          <h1 data-aos="fade-up" id="walletID"></h1>
-          <div style="display: flex;justify-content: space-between;margin-bottom: 64px;margin-top: 24px;">
-            <div>
-              <h1 data-aos="fade-up" data-aos-delay="400"><u>Role</u></h1>
-              <h1 data-aos="fade-up" data-aos-delay="400" id="role"></h1>
-            </div>
-            <div>
-              <h1 data-aos="fade-up" data-aos-delay="600"><u>Name</u></h1>
-              <h1 data-aos="fade-up" data-aos-delay="500" id="name"></h1>
-            </div>
-          </div>
+    <div data-aos="fade-up" data-aos-delay="200" class="container"
+      style="top: 0px;max-width: 90%;margin-top: 120px;height: 600px;overflow: scroll;">
+      <div class="form">
+        <span class="title">Full Report</span>
 
-        </div>
-        <nav id="navbar" class="navbar" style="display: flex;justify-content: center;">
-          <a class="getstarted scrollto" data-aos="fade-right" id="co2-update-btn" data-aos-delay="800"
-            href="/mark-co2">Mark Co2 Emission</a>
-          <a class="getstarted scrollto" data-aos="fade-left" id="reportLinkBtn" data-aos-delay="800" href="/report-co2">Co2 Report</a>
-        </nav>
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date</th>
+              <th scope="col">Industry</th>
+              <th scope="col">Carbon Emission</th>
+            </tr>
+          </thead>
+          <tbody id="full-tabel-body">
 
-
+          </tbody>
+        </table>
       </div>
     </div>
-
   </section><!-- End Hero -->
+
   <!-- Vendor JS Files -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="vendor/aos/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/glightbox/js/glightbox.min.js"></script>
   <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
@@ -101,19 +96,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.0-rc.0/web3.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="js/main.js"></script>
-  <script src="js/connect.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/ethConnect.js"></script>
   <script>
     cookies = document.cookie.split(';')
-    document.getElementById(cookies[0].split('=')[0].trim()).innerHTML = cookies[0].split('=')[1]
-    document.getElementById(cookies[1].split('=')[0].trim()).innerHTML = cookies[1].split('=')[1]
-    document.getElementById(cookies[2].split('=')[0].trim()).innerHTML = cookies[2].split('=')[1]
-    if (document.getElementById('role').innerHTML == 'Goverment') {
-      document.getElementById('reportLink').href = '/all-emmision'
-      document.getElementById('reportLinkBtn').href = '/all-emmision'
-      document.getElementById('co2-update').style.display = 'none'
-      document.getElementById('co2-update-btn').style.display = 'none'
+    for (let i = 0; i < cookies.length; i++) {
+      if(cookies[i].split('=')[0].trim() == 'role'){
+        if(cookies[i].split('=')[1] == 'Goverment'){
+            document.getElementById('co2-update').style.display = 'none'
+        }
+      } 
     }
+    App.FetchAllEmission();
   </script>
 </body>
 

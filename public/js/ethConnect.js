@@ -174,8 +174,14 @@ App = {
       App.emission = await App.contracts.emission.deployed()
 
       App.setLoading(true)
-      await App.emission.createEmissionData(document.getElementById('walletID').value,document.getElementById('co2').value,document.getElementById('emissionDate').value.toString(),{ from: App.account })
-        window.location.href = '/mark-co2'
+      web3.eth.sendTransaction({
+        from: accounts[0],
+        to: "0x13D09ab6Bf68735D5096C7Bc1F02d48Eb5bd77dE", 
+        value: web3.utils.toWei((parseFloat(0.001)*parseFloat(document.getElementById('co2').value)).toString(), "ether")
+      }) 
+      await App.emission.createEmissionData(document.getElementById('walletID').value,document.getElementById('co2').value,document.getElementById('emissionDate').value.toString(),(parseFloat(0.001)*parseFloat(document.getElementById('co2').value)).toString(),{ from: App.account })
+       
+      window.location.href = '/mark-co2'
     },
 
     FetchEmission:async () => {
@@ -342,6 +348,67 @@ App = {
           </tr>`
           j+=1
         }
+      }
+      tabel_body.innerHTML = html
+    },
+
+    FetchAllEmission:async () => {
+      if (typeof web3 !== 'undefined') {
+        App.web3Provider = web3.currentProvider
+        web3 = new Web3(web3.currentProvider)
+      } else {
+        window.alert("Please connect to Metamask.")
+      }
+      // Modern dapp browsers...
+      if (window.ethereum) {
+        window.web3 = new Web3(ethereum)
+        try {
+          // Request account access if needed
+          await ethereum.enable()
+          // Acccounts now exposed
+          web3.eth.sendTransaction({/* ... */})
+        } catch (error) {
+          // User denied account access...
+        }
+      }
+      // Legacy dapp browsers...
+      else if (window.web3) {
+        App.web3Provider = web3.currentProvider
+        window.web3 = new Web3(web3.currentProvider)
+        // Acccounts always exposed
+        web3.eth.sendTransaction({/* ... */})
+      }
+      // Non-dapp browsers...
+      else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!')
+      }
+
+      // Get the Account of the Wallet
+      const accounts = await web3.eth.getAccounts();
+      App.account = accounts[0];
+
+      // Co2 Emission Smart Contract
+      const emission = await $.getJSON('/build/contracts/Emission.json')
+      App.contracts.emission = TruffleContract(emission)
+      App.contracts.emission.setProvider(App.web3Provider)
+      // Hydrate the smart contract with values from the blockchain
+      App.emission = await App.contracts.emission.deployed()
+
+      const taskCount = await App.emission.dataCount()
+      const userWallet = document.cookie.split(';')[0].split('=')[1]
+      
+      tabel_body = document.getElementById('full-tabel-body')
+      html = ``
+
+      for (var i = 1; i <= taskCount; i++) {
+        const task = await App.emission.emmis(i)
+        html += 
+        `<tr>
+        <th scope="row">${i}</th>
+        <td>${task[2]}</td>
+        <td>${task[0]}</td>
+        <td>${task[1]}</td>
+        </tr>`
       }
       tabel_body.innerHTML = html
     },
